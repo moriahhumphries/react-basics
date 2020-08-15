@@ -11,15 +11,20 @@ class App extends Component {
             { name: "Andrew", age: 35},
             { name: "Kerrigan", age: 9}
         ],
-
     }
+
+    // Standardaming convention for handler, pass reference onClick on element
+    switchNameHandler = () => {
+        console.log("Was clicked")
+    }
+
     render() {
         return (
             <div className="App">
                 <header className="App-header">
                     <h1>Hello World, I am a basic React app.</h1>
                 </header>
-                <button>Switch Name</button>
+                <button onClick={this.switchNameHandler}>Switch Name</button>
                 <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
                 <Person name={this.state.persons[1].name} age={this.state.persons[1].age}/>
                 <Person name={this.state.persons[2].name} age={this.state.persons[2].age}>My Hobby: Meowing at night.</Person>
