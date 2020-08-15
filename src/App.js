@@ -7,15 +7,25 @@ class App extends Component {
     // State - available only in classes in extend component in some versions of React. If state is updated, React will re-render
     state = {
         persons: [
-            { name: "Moriah", age: 32},
-            { name: "Andrew", age: 35},
-            { name: "Kerrigan", age: 9}
+            {name: "Moriah", age: 32},
+            {name: "Andrew", age: 35},
+            {name: "Kerrigan", age: 9}
         ],
     }
 
-    // Standardaming convention for handler, pass reference onClick on element
+    // Standard naming convention for handler, pass reference onClick on element
     switchNameHandler = () => {
-        console.log("Was clicked")
+        // console.log("Was clicked")
+        // DONT DO THIS this.state.persons[0].name = "Moriah Elise";
+
+        // Will update only changed information
+        this.setState({
+            persons: [
+                {name: "Moriah Elise", age: 32},
+                {name: "Andrew John", age: 35},
+                {name: "Kerrigan", age: 9}
+            ]
+        }) // takes object as argument and updates
     }
 
     render() {
@@ -27,7 +37,8 @@ class App extends Component {
                 <button onClick={this.switchNameHandler}>Switch Name</button>
                 <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
                 <Person name={this.state.persons[1].name} age={this.state.persons[1].age}/>
-                <Person name={this.state.persons[2].name} age={this.state.persons[2].age}>My Hobby: Meowing at night.</Person>
+                <Person name={this.state.persons[2].name} age={this.state.persons[2].age}>My Hobby: Meowing at
+                    night.</Person>
             </div>
         );
     }
