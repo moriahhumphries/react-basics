@@ -7,7 +7,6 @@ import Person from './Person/Person';
 // import UserOutput from './Components/UserOutput';
 
 
-
 class App extends Component {
 
     // State - available only in classes in extend component in some versions of React. If state is updated, React will re-render
@@ -37,11 +36,18 @@ class App extends Component {
     nameChangeHandler = (event) => {
         this.setState({
             persons: [
-            {name: "Moriah", age: 32},
-            {name: event.target.value, age: 35},
-            {name: "Kerrigan", age: 9}
-            ]
+                {name: "Moriah", age: 32},
+                {name: event.target.value, age: 35},
+                {name: "Kerrigan", age: 9}
+            ],
+            showPersons: false
         })
+    }
+
+    // React only renders elements once condition becomes true
+    togglePersonsHandler = () => {
+        const doesShow = this.state.showPersons;
+        this.setState({showPersons: !doesShow});
     }
 
     render() {
@@ -63,22 +69,29 @@ class App extends Component {
                 </header>
                 {/*// Can pass this way*/}
                 <button style={style}
-                    onClick={() => this.switchNameHandler("Moriah!!")}>Switch Name</button>
-                <Person
-                    name={this.state.persons[0].name}
-                    age={this.state.persons[0].age}/>
-                <Person
-                    name={this.state.persons[1].name}
-                    age={this.state.persons[1].age}
-                    changed={this.nameChangeHandler} />
-                <Person
-                    name={this.state.persons[2].name}
-                    age={this.state.persons[2].age}
-                    // Click to change name
-                    // click={this.switchNameHandler.bind(this, "Moriah")} >
-                    click={this.switchNameHandler.bind(this, "Moriah")} >
-                    My Hobby: Meowing at
-                    night.</Person>
+                        onClick={this.togglePersonsHandler}>Toggle List
+                </button>
+                {/*Can render content dynamically with a ternary (no block statements) and curly braces*/}
+                {this.state.showPersons ?
+                    <div>
+                        <Person
+                            name={this.state.persons[0].name}
+                            age={this.state.persons[0].age}/>
+                        <Person
+                            name={this.state.persons[1].name}
+                            age={this.state.persons[1].age}
+                            changed={this.nameChangeHandler}/>
+                        <Person
+                            name={this.state.persons[2].name}
+                            age={this.state.persons[2].age}
+                            // Click to change name
+                            // click={this.switchNameHandler.bind(this, "Moriah")} >
+                            click={this.switchNameHandler.bind(this, "Moriah")}>
+                            My Hobby: Meowing at
+                            night.
+                        </Person>
+                    </div> : null
+                }
             </div>
         );
     }
