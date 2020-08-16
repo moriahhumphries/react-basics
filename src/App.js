@@ -4,6 +4,8 @@ import React, {Component} from 'react';
 import './App.css';
 import './Person/Person.css';
 import Person from './Person/Person';
+import UserInput from './Components/UserInput';
+import UserOutput from './Components/UserOutput';
 
 class App extends Component {
     // State - available only in classes in extend component in some versions of React. If state is updated, React will re-render
