@@ -62,6 +62,30 @@ class App extends Component {
             cursor: "pointer"
         };
 
+        // uses variable and conditional to return JSX - Preferred way
+        let persons = null;
+
+        if (this.state.showPersons) {
+            persons = (
+                <div>
+                    <Person
+                        name={this.state.persons[0].name}
+                        age={this.state.persons[0].age}/>
+                    <Person
+                        name={this.state.persons[1].name}
+                        age={this.state.persons[1].age}
+                        changed={this.nameChangeHandler}/>
+                    <Person
+                        name={this.state.persons[2].name}
+                        age={this.state.persons[2].age}
+                        click={this.switchNameHandler.bind(this, "Moriah")}>
+                        My Hobby: Meowing at
+                        night.
+                    </Person>
+                </div>
+            );
+        }
+
         return (
             <div className="App">
                 <header className="App-header">
@@ -71,27 +95,7 @@ class App extends Component {
                 <button style={style}
                         onClick={this.togglePersonsHandler}>Toggle List
                 </button>
-                {/*Can render content dynamically with a ternary (no block statements) and curly braces*/}
-                {this.state.showPersons ?
-                    <div>
-                        <Person
-                            name={this.state.persons[0].name}
-                            age={this.state.persons[0].age}/>
-                        <Person
-                            name={this.state.persons[1].name}
-                            age={this.state.persons[1].age}
-                            changed={this.nameChangeHandler}/>
-                        <Person
-                            name={this.state.persons[2].name}
-                            age={this.state.persons[2].age}
-                            // Click to change name
-                            // click={this.switchNameHandler.bind(this, "Moriah")} >
-                            click={this.switchNameHandler.bind(this, "Moriah")}>
-                            My Hobby: Meowing at
-                            night.
-                        </Person>
-                    </div> : null
-                }
+                {persons}
             </div>
         );
     }
