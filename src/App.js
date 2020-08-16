@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 // import React, {useState} from 'react';
 import './App.css';
+import './Person/Person.css';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -40,13 +41,25 @@ class App extends Component {
     }
 
     render() {
+
+        const style = {
+            backgroundColor: "black",
+            color: "white",
+            font: "inherit",
+            fontWeight: "bold",
+            border: "1 px solid blue",
+            padding: "8px",
+            cursor: "pointer"
+        };
+
         return (
             <div className="App">
                 <header className="App-header">
                     <h1>Hello World, I am a basic React app.</h1>
                 </header>
                 {/*// Can pass this way*/}
-                <button onClick={() => this.switchNameHandler("Moriah!!")}>Switch Name</button>
+                <button style={style}
+                    onClick={() => this.switchNameHandler("Moriah!!")}>Switch Name</button>
                 <Person
                     name={this.state.persons[0].name}
                     age={this.state.persons[0].age}/>
